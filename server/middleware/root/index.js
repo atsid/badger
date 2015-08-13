@@ -7,6 +7,7 @@ function get(req, res) {
         links: {
             auth: '/auth',
             users: '/users',
+            repos: '/repos',
         },
     };
     res.json(payload);

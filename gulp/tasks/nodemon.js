@@ -1,17 +1,13 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const nodemon = require('gulp-nodemon');
-const config = require('config');
+const _ = require('lodash');
 
 gulp.task('nodemon', () => {
     return nodemon({
         script: 'index',
         ext: 'js',
-        env: {
-            'DEBUG': process.env.DEBUG || 'app*,jefferson*,mountie*',
-            'GITHUB_TOKEN': config.github.token,
-            'GITHUB_ORG': config.github.org,
-        },
+        env: _.merge({ DEBUG: 'app*,jefferson*,mountie*' }, process.env),
         tasks: ['lint-server', 'test-server'],
     })
         .on('error', (err) => gutil.log('nodemon error', err))

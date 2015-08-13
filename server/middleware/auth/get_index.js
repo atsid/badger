@@ -4,7 +4,6 @@ module.exports = (req, res) => {
         links: {
             'current': '/auth/current',
             'local': '/auth/local',
-            'google': '/auth/google',
             'github': '/auth/github',
         },
     });
