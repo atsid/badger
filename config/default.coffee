@@ -11,11 +11,7 @@ module.exports =
         local:
             password:
                 saltWorkFactor: 10
-        google:
-            clientID: 'your_consumer_key'
-            clientSecret: 'bogus_secret'
-            callbackURL: 'http://localhost:9000/api/auth/google/callback'
-            scope: 'https://www.googleapis.com/auth/plus.login'
+
         github:
             clientID: 'your_consumer_key'
             clientSecret: 'bogus_secret'
@@ -23,8 +19,6 @@ module.exports =
             scope: ['user:email']
 
     github:
-        org: 'dummy-org'
-        token: 'abc123'
         acceptHeader: 'application/json'
         user_agent: 'badger'
 

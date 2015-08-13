@@ -23,18 +23,17 @@ module.exports = {
     },
 
     /**
-    * A user's unique Google profile ID
-    */
-    googleId: {
-       type: String,
-       index: true,
-    },
-
-    /**
     * A user's unique Github profile ID
     */
     githubId: {
        type: String,
        index: true,
+    },
+
+    /**
+     * A user's Github OAuth Token
+     */
+    githubToken: {
+        type: String,
     },
 };
