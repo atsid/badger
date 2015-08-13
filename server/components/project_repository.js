@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const marked = require('marked');
 
 /**
  * The project repository returns a list of projects available for viewing.
@@ -20,11 +21,8 @@ class ProjectRepository {
         const name = repo.full_name;
         const isPrivate = repo.private;
         return this._getReadme.apply(this, [name]).then((readme) => {
-            return {
-                name,
-                'private': isPrivate,
-                badges: this.badgeScraper.scrape(readme),
-            };
+            const badges = this.badgeScraper.scrape(readme).map((b) => marked(b));
+            return { name, 'private': isPrivate, badges };
         });
     }
 
