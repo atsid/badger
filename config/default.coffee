@@ -16,7 +16,7 @@ module.exports =
             clientID: 'your_consumer_key'
             clientSecret: 'bogus_secret'
             callbackURL: 'http://localhost:9000/api/auth/github/callback'
-            scope: ['user:email']
+            scope: ['user', 'repo']
 
     github:
         acceptHeader: 'application/json'

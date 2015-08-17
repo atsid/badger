@@ -2,6 +2,8 @@ const Promise = require('bluebird');
 const marked = require('marked');
 const github = require('./github');
 
+const PAGE_SIZE = 10;
+
 /**
  * The project repository returns a list of projects available for viewing.
  */
@@ -14,11 +16,12 @@ class ProjectRepository {
         this._getReadme = this._getReadme.bind(this);
     }
 
-    getProjects(user) {
+    getProjects(user, page=0) {
         const client = github.createClient(user);
         return client.repos.getReposAsync({
             org: this.github.config.org,
-            per_page: 100,
+            page,
+            per_page: PAGE_SIZE,
         })
             .then((repos) => this._transformRepositories(client, repos));
     }
@@ -29,24 +32,24 @@ class ProjectRepository {
             .then((r) => this._transformRepository(client, r));
     }
 
-    getProjectsByOrg(user, org) {
+    getProjectsByOrg(user, org, page=0) {
         const client = github.createClient(user);
-        return client.repos.getFromOrgAsync({org})
+        return client.repos.getFromOrgAsync({org, page, per_page: PAGE_SIZE})
             .then((repos) => this._transformRepositories(client, repos));
     }
 
-    getProjectsByUser(user, owner) {
+    getProjectsByUser(user, owner, page) {
         const client = github.createClient(user);
-        return client.repos.getFromUserAsync({user: owner})
+        return client.repos.getFromUserAsync({user: owner, per_page: PAGE_SIZE, page})
             .then((repos) => this._transformRepositories(client, repos));
     }
 
-    getMyRepos(user) {
+    getMyRepos(user, page=0) {
         if (!user) {
             return [];
         }
         const client = github.createClient(user);
-        return client.repos.getAllAsync({per_page: 100})
+        return client.repos.getAllAsync({page, per_page: PAGE_SIZE})
             .then((repos) => this._transformRepositories(client, repos));
     }
 
