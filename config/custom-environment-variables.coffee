@@ -1,27 +1,30 @@
 module.exports =
-    session:
-        secret: "SESSION_STATE_SECRET"
+  server:
+    port: "SERVER_PORT"
 
-    container:
-        composed: "DOCKER_COMPOSED"
+  session:
+    secret: "SESSION_STATE_SECRET"
 
-    clustering:
-        workerLimit: "CLUSTERING_WORKER_LIMIT"
+  container:
+    composed: "DOCKER_COMPOSED"
 
-    database:
-        connectionString: "DB_CONNECTION_STRING"
-        composeConnection:
-            host: "MONGO_1_PORT_27017_TCP_ADDR"
-            port: "MONGO_1_PORT_27017_TCP_PORT"
+  clustering:
+    workerLimit: "CLUSTERING_WORKER_LIMIT"
+
+  database:
+    connectionString: "DB_CONNECTION_STRING"
+    composeConnection:
+      host: "MONGO_1_PORT_27017_TCP_ADDR"
+      port: "MONGO_1_PORT_27017_TCP_PORT"
+
+  auth:
+    local:
+      password:
+        saltWorkFactor: "SALT_WORK_FACTOR"
 
     github:
-        user_agent: "GITHUB_USER_AGENT"
+      clientID: "GITHUB_CLIENT_ID"
+      clientSecret: "GITHUB_CLIENT_SECRET"
+      scope: "GITHUB_SCOPE"
 
-    auth:
-        local:
-            password:
-                saltWorkFactor: "SALT_WORK_FACTOR"
-        github:
-            clientID: "GITHUB_CLIENT_ID"
-            clientSecret: "GITHUB_CLIENT_SECRET"
-            scope: "GITHUB_SCOPE"
+

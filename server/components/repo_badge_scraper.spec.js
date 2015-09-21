@@ -5,19 +5,19 @@ const BULLHORN_MD = '[![Build Status](https://travis-ci.org/atsid/bullhorn-js.sv
 const PL_MD = 'This is a simple play 2.2.x plugin for liquibase';
 
 describe('The RepoBadgeScraper class', () => {
-    let scraper = null;
-    beforeEach(() => scraper = new Scraper());
+  let scraper = null;
+  beforeEach(() => scraper = new Scraper());
 
-    it('extracts nothing when no badges are present', () => {
-        expect(scraper.scrape(PL_MD).length).to.equal(0);
-    });
+  it('extracts nothing when no badges are present', () => {
+    expect(scraper.scrape(PL_MD).length).to.equal(0);
+  });
 
-    it('extracts badges when they are present', () => {
-        const badges = scraper.scrape(BULLHORN_MD);
-        expect(badges.length).to.equal(4);
-        expect(badges[0]).to.equal('[![Build Status](https://travis-ci.org/atsid/bullhorn-js.svg?branch=master)](https://travis-ci.org/atsid/bullhorn-js)');
-        expect(badges[1]).to.equal('[![Code Climate](https://codeclimate.com/github/atsid/bullhorn-js/badges/gpa.svg)](https://codeclimate.com/github/atsid/bullhorn-js)');
-        expect(badges[2]).to.equal('[![Dependency Status](https://david-dm.org/atsid/bullhorn-js.svg)](https://david-dm.org/atsid/bullhorn-js)');
-        expect(badges[3]).to.equal('[![Dev Dependency Status](https://david-dm.org/atsid/bullhorn-js/dev-status.svg)](https://david-dm.org/atsid/bullhorn-js)');
-    });
+  it('extracts badges when they are present', () => {
+    const badges = scraper.scrape(BULLHORN_MD);
+    expect(badges.length).to.equal(4);
+    expect(badges[0]).to.equal('[![Build Status](https://travis-ci.org/atsid/bullhorn-js.svg?branch=master)](https://travis-ci.org/atsid/bullhorn-js)');
+    expect(badges[1]).to.equal('[![Code Climate](https://codeclimate.com/github/atsid/bullhorn-js/badges/gpa.svg)](https://codeclimate.com/github/atsid/bullhorn-js)');
+    expect(badges[2]).to.equal('[![Dependency Status](https://david-dm.org/atsid/bullhorn-js.svg)](https://david-dm.org/atsid/bullhorn-js)');
+    expect(badges[3]).to.equal('[![Dev Dependency Status](https://david-dm.org/atsid/bullhorn-js/dev-status.svg)](https://david-dm.org/atsid/bullhorn-js)');
+  });
 });

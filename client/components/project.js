@@ -1,45 +1,49 @@
-const React = require('react/addons');
+const React = require('react');
 
 const Project = React.createClass({
-    propTypes: {
-        project: React.PropTypes.object.isRequired,
-    },
+  propTypes: {
+    project: React.PropTypes.object.isRequired,
+  },
 
-    getInitialState() {
-        return {
-            project: {},
-        };
-    },
+  getInitialState() {
+    return {
+      project: this.props.project,
+    };
+  },
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({project: nextProps.project});
-    },
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      project: nextProps.project,
+    });
+    this.render();
+  },
 
-    render() {
-        const privateIndicator = (this.state.project.private && 'Private') || 'Public';
-        const badges = [];
-        if (this.state.project.badges) {
-            this.state.project.badges.forEach((b) => badges.push(
-                <span className="projectBadge" dangerouslySetInnerHTML={{__html: b}}></span>
-            ));
-        }
+  render() {
+    const project = this.state.project || {};
+    const privateIndicator = (project.private && 'Private') || 'Public';
+    const badges = [];
+    if (project.badges) {
+      project.badges.forEach((b) => badges.push(
+        <span className="projectBadge" dangerouslySetInnerHTML={{__html: b}}></span>
+      ));
+    }
 
-        return (
-            <div>
-                <div className="projectTitleLine">
-                    <h2 className="projectName">
-                        { this.state.project.name }
-                    </h2>
-                    <h4 className="projectPrivacy">
-                        { privateIndicator }
-                    </h4>
-                </div>
-                <div className="projectBadges">
-                    { badges }
-                </div>
-            </div>
-        );
-    },
+    return (
+      <div>
+        <div className="projectTitleLine">
+          <h2 className="projectName">
+            { project.name }
+          </h2>
+          <h4 className="projectPrivacy">
+            { privateIndicator }
+          </h4>
+        </div>
+        <div className="projectBadges">
+          { badges }
+        </div>
+      </div>
+    );
+  },
 });
 
 module.exports = Project;
