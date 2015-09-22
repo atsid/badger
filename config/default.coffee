@@ -21,6 +21,7 @@ module.exports =
   github:
     acceptHeader: 'application/json'
     user_agent: 'badger'
+    pageSize: 50
 
   container:
     composed: 0

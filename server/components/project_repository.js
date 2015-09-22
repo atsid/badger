@@ -1,8 +1,9 @@
 const Promise = require('bluebird');
 const marked = require('marked');
+const config = require('config');
 const github = require('./github');
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = config.github.pageSize;
 
 /**
  * The project repository returns a list of projects available for viewing.

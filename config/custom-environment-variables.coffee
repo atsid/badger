@@ -17,6 +17,9 @@ module.exports =
       host: "MONGO_1_PORT_27017_TCP_ADDR"
       port: "MONGO_1_PORT_27017_TCP_PORT"
 
+  github:
+    pageSize: "GITHUB_PAGE_SIZE"
+
   auth:
     local:
       password:
