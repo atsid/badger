@@ -71,7 +71,6 @@
   },
   "dependencies": {
     "babel": "^5.8.3",
-    "bcrypt": "^0.8.3",
     "bluebird": "^2.9.34",
     "body-parser": "^1.13.2",
     "coffee-script": "^1.9.3",
