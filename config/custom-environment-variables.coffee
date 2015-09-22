@@ -26,5 +26,6 @@ module.exports =
       clientID: "GITHUB_CLIENT_ID"
       clientSecret: "GITHUB_CLIENT_SECRET"
       scope: "GITHUB_SCOPE"
+      callbackURL: "GITHUB_CALLBACK_URL"
 
 
