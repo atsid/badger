@@ -12,7 +12,8 @@
     "start": "DEBUG=app*,jefferson* node index",
     "test": "gulp && gulp archive",
     "develop": "gulp develop",
-    "report-coverage": "codeclimate-test-reporter < target/test-reports/all/lcov.info"
+    "report-coverage": "codeclimate-test-reporter < target/test-reports/all/lcov.info",
+    "prestart": "npm run create-app-symlink"
   },
   "repository": {
     "type": "git",
