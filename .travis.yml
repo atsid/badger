@@ -7,8 +7,6 @@ after_script: npm run report-coverage && npm run archive
 deploy:
   provider: elasticbeanstalk
   skip_cleanup: true
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_KEY
   region: us-west-2
   zip-file: dist/badger.zip
   app: oss-demos
