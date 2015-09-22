@@ -7,7 +7,7 @@ gulp.task('archive', () => {
     'index.js',
     'package.json',
     'README.md',
-    'npm-shrinkwrap.json'
+    'npm-shrinkwrap.json',
   ])
     .pipe(zip('badger.zip'))
     .pipe(gulp.dest('dist'));
