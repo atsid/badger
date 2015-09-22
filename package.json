@@ -5,7 +5,7 @@
   "homepage": "https://github.com/atsid/badger",
   "scripts": {
     "install-git-hooks": "./scripts/npm/install-git-hooks.sh",
-    "postinstall": "npm run install-git-hooks && npm run create-app-symlink && gulp",
+    "postinstall": "npm run install-git-hooks && npm run create-app-symlink",
     "create-app-symlink": "./scripts/npm/create-app-symlink.sh",
     "pretest": "npm run create-app-symlink",
     "prerun": "npm run create-app-symlink",
