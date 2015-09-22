@@ -2,4 +2,18 @@ language: node_js
 node_js:
   - "4.0"
 sudo: false
-after_script: npm run report-coverage
+before_script: npm shrinkwrap
+after_script: npm run report-coverage && npm run archive
+deploy:
+  provider: elasticbeanstalk
+  skip_cleanup: true
+  region: us-west-2
+  zip-file: dist/badger.zip
+  app: oss-demos
+  env: badger
+  bucket_name: ats-travis
+  bucket_path: badger
+  on:
+    repo: atsid/badger
+    branch: master
+    node: '4.0'
