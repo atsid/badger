@@ -11,7 +11,9 @@ deploy:
   zip-file: dist/badger.zip
   app: oss-demos
   env: badger
-  bucket_name: ats-badger-artifacts
+  bucket_name: ats-travis
+  bucket_path: badger
   on:
     repo: atsid/badger
     branch: master
+    node: '4.0'
