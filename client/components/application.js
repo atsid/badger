@@ -1,56 +1,52 @@
-const React = require('react');
-const Project = require('./project');
+const React = require('react/addons');
 
-const ProjectStore = require('../stores/project_store');
-const projectStore = new ProjectStore();
+// Router Components
+const ReactRouter = require('react-router');
+const Router = ReactRouter.Router;
+const Route = ReactRouter.Route;
+const IndexRoute = ReactRouter.IndexRoute;
 
-const debug = require('debug')('app:components:application');
+// Application Components
+const NoMatch = require('./NoMatch');
+const Skeleton = require('./Skeleton');
+const Dashboard = require('./Dashboard');
+const Login = require('./Login');
+const MyProjects = require('./MyProjects');
+
+// MUI
+const mui = require('material-ui');
+const ThemeManager = new mui.Styles.ThemeManager();
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+const injectTapEventPlugin = require('react-tap-event-plugin');
+injectTapEventPlugin();
 
 const Application = React.createClass({
-  getInitialState() {
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
     return {
-      loading: true,
-      projects: [],
+      muiTheme: ThemeManager.getCurrentTheme(),
     };
   },
 
-  componentDidMount() {
-    this.getStateFromStore({});
-  },
-
-  getStateFromStore() {
-    this.setState({projects: [], loading: true});
-
-    return projectStore.getProjects()
-      .then((projects) => {
-        this.setState({projects, loading: false});
-      })
-      .catch((err) => {
-        debug('error loading store data', err);
-        this.setState({loading: false});
-      });
-  },
-
   render() {
-    const projects = [];
-    if (this.state.projects) {
-      this.state.projects.forEach((p) => {
-        projects.push(<Project key={p.name} project={p}/>);
-      });
-    }
     return (
-      <div>
-        <div>
-          <h1>Login</h1>
-          <a href="/api/auth/github">Login with Github</a>
-        </div>
-        <div>
-          <h1>Projects</h1>
-          <div>{ projects }</div>
-        </div>
-      </div>
+      <Router>
+        <Route path="/" component={Skeleton}>
+          <IndexRoute component={Dashboard} />
+          <Route path="login" component={Login} />
+          <Route path="projects">
+            <Route path="mine" component={MyProjects} />
+          </Route>
+          <Route path="*" component={NoMatch} />
+        </Route>
+      </Router>
     );
   },
 });
-
 module.exports = Application;

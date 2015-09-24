@@ -1,4 +1,10 @@
-const React = require('react');
+const React = require('react/addons');
+
+// Components
+const mui = require('material-ui');
+const Card = mui.Card;
+const CardHeader = mui.CardHeader;
+const CardText = mui.CardText;
 
 const Project = React.createClass({
   propTypes: {
@@ -6,16 +12,11 @@ const Project = React.createClass({
   },
 
   getInitialState() {
-    return {
-      project: this.props.project,
-    };
+    return {project: this.props.project};
   },
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      project: nextProps.project,
-    });
-    this.render();
+    this.setState({project: nextProps.project});
   },
 
   render() {
@@ -23,25 +24,19 @@ const Project = React.createClass({
     const privateIndicator = (project.private && 'Private') || 'Public';
     const badges = [];
     if (project.badges) {
+      let index = 0;
       project.badges.forEach((b) => badges.push(
-        <span className="projectBadge" dangerouslySetInnerHTML={{__html: b}}></span>
+        <span key={index++} className="projectBadge" dangerouslySetInnerHTML={{__html: b}}></span>
       ));
     }
-
     return (
-      <div>
-        <div className="projectTitleLine">
-          <h2 className="projectName">
-            { project.name }
-          </h2>
-          <h4 className="projectPrivacy">
-            { privateIndicator }
-          </h4>
-        </div>
-        <div className="projectBadges">
+      <Card>
+        <CardHeader title={project.name} subtitle={privateIndicator} />
+
+        <CardText>
           { badges }
-        </div>
-      </div>
+        </CardText>
+      </Card>
     );
   },
 });
