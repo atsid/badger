@@ -12,7 +12,7 @@ const Router = require('react-router');
 const stores = require('../stores');
 const userStore = stores.userStore;
 
-const MainView = React.createClass({
+const Skeleton = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
   },
@@ -84,4 +84,4 @@ const MainView = React.createClass({
   },
 });
 
-module.exports = MainView;
+module.exports = Skeleton;

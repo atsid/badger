@@ -1,10 +1,14 @@
 const debug = require('debug')('app:components:my_project');
 const React = require('react/addons');
-const Project = require('./Project');
 
 // Stores
 const stores = require('../stores');
 const projectStore = stores.projectStore;
+
+// Components
+const mui = require('material-ui');
+const RefreshIndicator = mui.RefreshIndicator;
+const Project = require('./Project');
 
 const MyProjects = React.createClass({
   getInitialState() {
@@ -40,7 +44,7 @@ const MyProjects = React.createClass({
     let result = null;
     if (this.state.loading) {
       result = (
-        <div>Loading...</div>
+        <RefreshIndicator size={40} left={80} top={80} status="loading" />
       );
     } else if (projects.length > 0) {
       result = (

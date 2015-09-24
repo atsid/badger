@@ -1,4 +1,3 @@
-const debug = require('debug')('app:stores:project_store');
 const request = require('superagent-bluebird-promise');
 
 /**
@@ -7,10 +6,7 @@ const request = require('superagent-bluebird-promise');
 class ProjectStore {
   getMyProjects() {
     return request.get('/api/repos/mine')
-        .then((res) => {
-          debug('my projects: ', res.body);
-          return res.body;
-        })
+        .then((res) => res.body)
         .catch((err) => debug('could not load projects', err));
   }
 }

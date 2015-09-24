@@ -8,7 +8,7 @@ const IndexRoute = ReactRouter.IndexRoute;
 
 // Application Components
 const NoMatch = require('./NoMatch');
-const MainView = require('./MainView');
+const Skeleton = require('./Skeleton');
 const Dashboard = require('./Dashboard');
 const Login = require('./Login');
 const MyProjects = require('./MyProjects');
@@ -37,7 +37,7 @@ const Application = React.createClass({
   render() {
     return (
       <Router>
-        <Route path="/" component={MainView}>
+        <Route path="/" component={Skeleton}>
           <IndexRoute component={Dashboard} />
           <Route path="login" component={Login} />
           <Route path="projects">
