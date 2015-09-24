@@ -74,7 +74,6 @@
     "watchify": "^3.2.3"
   },
   "dependencies": {
-    "axios": "^0.6.0",
     "babel": "^5.8.3",
     "bcryptjs": "^2.2.1",
     "bluebird": "^2.9.34",
