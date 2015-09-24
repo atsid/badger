@@ -2,7 +2,7 @@ const cat = require('./badge_categorizer');
 const { expect } = require('chai');
 
 const TRAVIS_BADGE = `<a href="https://travis-ci.org/atsid/badger"><img src="https://travis-ci.org/atsid/badger.svg?branch=master" alt="Build Status"></a>`;
-const WERCKER_BADGE = `<a href="https://app.wercker.com/project/bykey/e39e9ad81e711bf363bb159deddb9e7a"><img src="https://camo.githubusercontent.com/" alt="wercker status" data-canonical-src="https://app.wercker.com/status/e39e9ad81e711bf363bb159deddb9e7a/s/master" style="max-width:100%;"></a>`;
+const WERCKER_BADGE = `<a href="https://app.wercker.com/project/bykey/e39e9ad81e711bf363bb159deddb9e7a"><img src="https://camo.githubusercontent.com/" alt="wercker status" data-canonical-src="https://app.wercker.com/status/e39e9ad81e711bf363bb159deddb9e7a/s/master"></a>`;
 const CODECLIMATE_GPA_BADGE = `<a href="https://codeclimate.com/github/atsid/badger"><img src="https://codeclimate.com/github/atsid/badger/badges/gpa.svg" alt="Code Climate"></a>`;
 const DAVID_BADGE = `<a href="https://david-dm.org/atsid/amd-plugins"><img src="https://david-dm.org/atsid/amd-plugins.svg" alt="Dependency Status"></a>`;
 const DAVID_DEV_BADGE = `<a href="https://david-dm.org/atsid/amd-plugins"><img src="https://david-dm.org/atsid/amd-plugins/dev-status.svg" alt="Dev Dependency Status"></a>`;

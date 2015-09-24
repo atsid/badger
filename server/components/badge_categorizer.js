@@ -1,24 +1,44 @@
+const _ = require('lodash');
+
+const domainHandlers = [
+  {
+    domain: 'travis-ci.org',
+    getCategory() {
+      return 'build';
+    },
+  },
+  {
+    domain: 'wercker.com',
+    getCategory() {
+      return 'build';
+    },
+  },
+  {
+    domain: 'codeclimate.com',
+    getCategory(text) {
+      return (text.indexOf('/coverage') > -1) ? 'coverage' : 'quality';
+    },
+  },
+  {
+    domain: 'david-dm.org',
+    getCategory(text) {
+      return (text.indexOf('/dev-status') > -1) ? 'devDependencies' : 'dependencies';
+    },
+  },
+  {
+    domain: 'nodei.co',
+    getCategory() {
+      return 'npm';
+    },
+  },
+];
 
 function categorize(text) {
+  const handler = _.find(domainHandlers, (h) => text.indexOf(h.domain) > -1);
   let category = 'unknown';
-  if (text.indexOf('travis-ci.org') > -1 || text.indexOf('wercker.com') > -1) {
-    category = 'build';
-  } else if (text.indexOf('codeclimate.com') > -1) {
-    if (text.indexOf('/coverage') > -1) {
-      category = 'coverage';
-    } else {
-      category = 'quality';
-    }
-  } else if (text.indexOf('david-dm.org') > -1) {
-    if (text.indexOf('/dev-status') > -1) {
-      category = 'devDependencies';
-    } else {
-      category = 'dependencies';
-    }
-  } else if (text.indexOf('nodei.co') > -1) {
-    category = 'npm';
+  if (handler) {
+    category = handler.getCategory(text);
   }
-
   return {category, content: text};
 }
 

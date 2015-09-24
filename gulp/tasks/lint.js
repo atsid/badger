@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const config = require('../config');
 const empty = require('gulp-empty');
+const debug = require('gulp-debug');
 
 const srcConfig = {};
 const testConfig = {
@@ -19,6 +20,7 @@ const testConfig = {
 function lint(glob, eslintConf = {}, tdd = false) {
   return () => {
     return gulp.src(glob)
+      .pipe(debug({title: 'lint'}))
       .pipe(eslint(eslintConf))
       .pipe(eslint.format())
       .pipe(tdd ? empty() : eslint.failAfterError());
