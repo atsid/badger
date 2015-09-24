@@ -2,6 +2,7 @@ const React = require('react/addons');
 
 // Components
 const mui = require('material-ui');
+const Paper = mui.Paper;
 const Card = mui.Card;
 const CardHeader = mui.CardHeader;
 const CardText = mui.CardText;
@@ -30,15 +31,10 @@ const Project = React.createClass({
       ));
     }
     return (
-      <Card>
-        <CardHeader title={project.name} subtitle={privateIndicator} />
-
-        <CardText>
-          <div>
-          { badges }
-          </div>
-        </CardText>
-      </Card>
+      <Paper className="projectView">
+        <div className="badgeBlock projectName">{project.name}</div>
+        <div className="badgeBlock">{badges}</div>
+      </Paper>
     );
   },
 });

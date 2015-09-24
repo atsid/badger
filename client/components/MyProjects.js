@@ -3,7 +3,8 @@ const React = require('react/addons');
 
 // Components
 const mui = require('material-ui');
-const RefreshIndicator = mui.RefreshIndicator;
+const CircularProgress = mui.CircularProgress;
+
 const Project = require('./Project');
 
 const MyProjects = React.createClass({
@@ -44,7 +45,7 @@ const MyProjects = React.createClass({
     let result = null;
     if (this.state.loading) {
       result = (
-        <RefreshIndicator size={40} left={80} top={80} status="loading" />
+        <CircularProgress mode="indeterminate" size={2} />
       );
     } else if (projects.length > 0) {
       result = (
