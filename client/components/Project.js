@@ -3,9 +3,6 @@ const React = require('react/addons');
 // Components
 const mui = require('material-ui');
 const Paper = mui.Paper;
-const Card = mui.Card;
-const CardHeader = mui.CardHeader;
-const CardText = mui.CardText;
 
 const Project = React.createClass({
   propTypes: {
@@ -22,7 +19,7 @@ const Project = React.createClass({
 
   render() {
     const project = this.state.project || {};
-    const privateIndicator = (project.private && 'Private') || 'Public';
+    const privacyIndicator = (project.private && (<b> [priv]</b>)) || '';
     const badges = [];
     if (project.badges) {
       let index = 0;
@@ -32,7 +29,7 @@ const Project = React.createClass({
     }
     return (
       <Paper className="projectView">
-        <div className="badgeBlock projectName">{project.name}</div>
+        <div className="badgeBlock projectName">{project.name}{privacyIndicator}</div>
         <div className="badgeBlock">{badges}</div>
       </Paper>
     );
