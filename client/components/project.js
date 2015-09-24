@@ -26,7 +26,7 @@ const Project = React.createClass({
     if (project.badges) {
       let index = 0;
       project.badges.forEach((b) => badges.push(
-        <span key={index++} className="projectBadge" dangerouslySetInnerHTML={{__html: b}}></span>
+        <div className="projectBadge" key={index++} dangerouslySetInnerHTML={{__html: b}} />
       ));
     }
     return (
@@ -34,7 +34,9 @@ const Project = React.createClass({
         <CardHeader title={project.name} subtitle={privateIndicator} />
 
         <CardText>
+          <div>
           { badges }
+          </div>
         </CardText>
       </Card>
     );
