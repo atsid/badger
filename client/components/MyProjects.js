@@ -37,6 +37,7 @@ const MyProjects = React.createClass({
       });
     }
 
+    let result = null;
     if (this.state.loading) {
       result = (
         <div>Loading...</div>
