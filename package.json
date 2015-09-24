@@ -1,6 +1,6 @@
 {
-  "name": "badger",
-  "version": "0.0.0",
+  "name": "ats-badger",
+  "version": "0.1.0",
   "description": "Github Badge Aggregator",
   "homepage": "https://github.com/atsid/badger",
   "scripts": {
