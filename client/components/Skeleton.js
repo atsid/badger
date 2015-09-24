@@ -8,17 +8,14 @@ const LeftNav = mui.LeftNav;
 const FlatButton = mui.FlatButton;
 const Router = require('react-router');
 
-// Stores
-const stores = require('../stores');
-const userStore = stores.userStore;
-
 const Skeleton = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
   },
 
   contextTypes: {
-    history: Router.PropTypes.history,
+    history: Router.PropTypes.history.isRequired,
+    stores: React.PropTypes.object.isRequired,
   },
 
   getInitialState() {
@@ -40,7 +37,7 @@ const Skeleton = React.createClass({
 
   getStateFromStore() {
     this.state = {projects: [], loading: true};
-    return userStore.getCurrentUser()
+    return this.context.stores.users.getCurrentUser()
       .then((user) => this.setState({user, loading: false}))
       .catch((err) => {
         debug('error loading store data', err);

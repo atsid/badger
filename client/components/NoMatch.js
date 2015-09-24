@@ -6,7 +6,7 @@ const NoMatch = React.createClass({
   },
 
   render() {
-    return (<h1>Derp!</h1>);
+    return (<h1>Derp.</h1>);
   },
 });
 

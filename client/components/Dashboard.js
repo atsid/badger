@@ -1,9 +1,12 @@
 const React = require('react/addons');
-const userStore = require('../stores').userStore;
-const MyProjects = require('./MyProjects');
 const Login = require('./Login');
+const MyProjects = require('./MyProjects');
 
 const Dashboard = React.createClass({
+  contextTypes: {
+    stores: React.PropTypes.object.isRequired,
+  },
+
   getInitialState() {
     return {};
   },
@@ -14,7 +17,7 @@ const Dashboard = React.createClass({
 
   getStateFromStore() {
     this.setState({loading: true});
-    userStore.getCurrentUser()
+    this.context.stores.users.getCurrentUser()
       .then((user) => this.setState({user, loading: false}))
       .catch(() => this.setState({loading: false}));
   },

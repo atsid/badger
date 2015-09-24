@@ -26,11 +26,13 @@ injectTapEventPlugin();
 const Application = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
+    stores: React.PropTypes.object.isRequired,
   },
 
   getChildContext() {
     return {
       muiTheme: ThemeManager.getCurrentTheme(),
+      stores: require('./../stores'),
     };
   },
 

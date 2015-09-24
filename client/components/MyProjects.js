@@ -1,16 +1,16 @@
 const debug = require('debug')('app:components:my_project');
 const React = require('react/addons');
 
-// Stores
-const stores = require('../stores');
-const projectStore = stores.projectStore;
-
 // Components
 const mui = require('material-ui');
 const RefreshIndicator = mui.RefreshIndicator;
 const Project = require('./Project');
 
 const MyProjects = React.createClass({
+  contextTypes: {
+    stores: React.PropTypes.object.isRequired,
+  },
+
   getInitialState() {
     return {projects: []};
   },
@@ -21,7 +21,7 @@ const MyProjects = React.createClass({
 
   getStateFromStore() {
     this.setState({projects: [], loading: true});
-    return projectStore.getMyProjects()
+    return this.context.stores.projects.getMyProjects()
       .then((projects) => {
         this.setState({projects: projects, loading: false});
       })
