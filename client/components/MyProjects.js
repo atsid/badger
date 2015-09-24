@@ -5,7 +5,7 @@ const React = require('react/addons');
 const mui = require('material-ui');
 const CircularProgress = mui.CircularProgress;
 
-const Project = require('./Project');
+const BadgeTable = require('./BadgeTable');
 
 const MyProjects = React.createClass({
   contextTypes: {
@@ -33,32 +33,15 @@ const MyProjects = React.createClass({
   },
 
   render() {
-    const projects = [];
-    if (this.state.projects) {
-      this.state.projects.forEach((p) => {
-        projects.push(
-          <Project key={p.name} project={p}/>
-        );
-      });
-    }
-
     let result = null;
+    const projects = this.state.projects;
     if (this.state.loading) {
-      result = (
-        <CircularProgress mode="indeterminate" size={2} />
-      );
+      result = (<CircularProgress mode="indeterminate" size={2} />);
     } else if (projects.length > 0) {
-      result = (
-        <div>
-          <div>{ projects }</div>
-        </div>
-      );
+      result = (<BadgeTable projects={projects} />);
     } else {
-      result = (
-        <h1>No Projects Found!</h1>
-      );
+      result = (<h1>No Projects Found!</h1>);
     }
-
     return result;
   },
 });

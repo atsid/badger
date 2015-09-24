@@ -5,6 +5,7 @@ const github = require('./github');
 
 const PAGE_SIZE = config.github.pageSize;
 const strippy = require('./strippy');
+const categorize = require('./badge_categorizer');
 
 /**
  * The project repository returns a list of projects available for viewing.
@@ -63,10 +64,14 @@ class ProjectRepository {
     const name = repo.full_name;
     const isPrivate = repo.private;
     return this._getReadme.apply(this, [client, name]).then((readme) => {
-      const badges = this.badgeScraper
+      const badgeData = this.badgeScraper
         .scrape(readme)
         .map((b) => marked(b))
-        .map((b) => strippy(b));
+        .map((b) => strippy(b))
+        .map((b) => categorize(b));
+
+      const badges = {};
+      badgeData.forEach((b) => badges[b.category] = b.content);
       return {name, 'private': isPrivate, badges};
     });
   }
