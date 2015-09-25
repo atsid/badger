@@ -1,4 +1,3 @@
-const debug = require('debug')('app:init:rewrite_ui_route');
 const config = require('config');
 
 module.exports = {
