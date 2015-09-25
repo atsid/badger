@@ -12,6 +12,8 @@ const Skeleton = require('./Skeleton');
 const Dashboard = require('./Dashboard');
 const Login = require('./Login');
 const MyProjects = require('./MyProjects');
+const OrgProjects = require('./OrgProjects');
+const UserProjects = require('./UserProjects');
 
 // MUI
 const mui = require('material-ui');
@@ -22,6 +24,8 @@ const ThemeManager = new mui.Styles.ThemeManager();
 // https://github.com/zilverline/react-tap-event-plugin
 const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
+
+const createBrowserHistory = require('history/lib/createBrowserHistory');
 
 const Application = React.createClass({
   childContextTypes: {
@@ -38,13 +42,13 @@ const Application = React.createClass({
 
   render() {
     return (
-      <Router>
+      <Router history={createBrowserHistory()}>
         <Route path="/" component={Skeleton}>
           <IndexRoute component={Dashboard} />
           <Route path="login" component={Login} />
-          <Route path="projects">
-            <Route path="mine" component={MyProjects} />
-          </Route>
+          <Route path="mine" component={MyProjects} />
+          <Route path="org/:org" component={OrgProjects} />
+          <Route path="user/:user" component={UserProjects} />
           <Route path="*" component={NoMatch} />
         </Route>
       </Router>

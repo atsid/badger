@@ -2,10 +2,7 @@ const debug = require('debug')('app:components:my_project');
 const React = require('react/addons');
 
 // Components
-const mui = require('material-ui');
-const CircularProgress = mui.CircularProgress;
-
-const BadgeTable = require('./BadgeTable');
+const BadgeTableLoader = require('./BadgeTableLoader');
 
 const MyProjects = React.createClass({
   contextTypes: {
@@ -33,16 +30,7 @@ const MyProjects = React.createClass({
   },
 
   render() {
-    let result = null;
-    const projects = this.state.projects;
-    if (this.state.loading) {
-      result = (<CircularProgress mode="indeterminate" size={2} />);
-    } else if (projects.length > 0) {
-      result = (<BadgeTable projects={projects} />);
-    } else {
-      result = (<h1>No Projects Found!</h1>);
-    }
-    return result;
+    return (<BadgeTableLoader loadState={this.state} />);
   },
 });
 
