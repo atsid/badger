@@ -11,7 +11,7 @@
     "prerun": "npm run create-app-symlink",
     "start": "DEBUG=app*,jefferson* node index",
     "test": "gulp && gulp archive",
-    "develop": "gulp develop",
+    "develop": "npm run create-app-symlink && gulp develop",
     "report-coverage": "codeclimate-test-reporter < target/test-reports/all/lcov.info",
     "prestart": "npm run create-app-symlink"
   },
