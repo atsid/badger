@@ -48,7 +48,7 @@ const Skeleton = React.createClass({
   render() {
     const menuItems = [
       {route: '/', text: 'Home'},
-      {route: '/projects/mine', text: 'My Projects', disabled: !this.state.user},
+      {route: '/mine', text: 'My Projects', disabled: !this.state.user},
     ];
 
     if (this.state.user) {
