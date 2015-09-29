@@ -4,7 +4,10 @@ const React = require('react/addons');
 // Components
 const BadgeTableLoader = require('./BadgeTableLoader');
 
-const MyProjects = React.createClass({
+const UserProjects = React.createClass({
+  propTypes: {
+    params: React.PropTypes.object,
+  },
   contextTypes: {
     stores: React.PropTypes.object.isRequired,
   },
@@ -18,8 +21,9 @@ const MyProjects = React.createClass({
   },
 
   getStateFromStore() {
+    const user = this.props.params.user;
     this.setState({projects: [], loading: true});
-    return this.context.stores.projects.getMyProjects()
+    return this.context.stores.projects.getUserProjects(user)
       .then((projects) => {
         this.setState({projects: projects, loading: false});
       })
@@ -34,4 +38,4 @@ const MyProjects = React.createClass({
   },
 });
 
-module.exports = MyProjects;
+module.exports = UserProjects;

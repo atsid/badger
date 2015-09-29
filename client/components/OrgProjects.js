@@ -4,7 +4,10 @@ const React = require('react/addons');
 // Components
 const BadgeTableLoader = require('./BadgeTableLoader');
 
-const MyProjects = React.createClass({
+const OrgProjects = React.createClass({
+  propTypes: {
+    params: React.PropTypes.object,
+  },
   contextTypes: {
     stores: React.PropTypes.object.isRequired,
   },
@@ -18,8 +21,9 @@ const MyProjects = React.createClass({
   },
 
   getStateFromStore() {
+    const org = this.props.params.org;
     this.setState({projects: [], loading: true});
-    return this.context.stores.projects.getMyProjects()
+    return this.context.stores.projects.getOrgProjects(org)
       .then((projects) => {
         this.setState({projects: projects, loading: false});
       })
@@ -34,4 +38,4 @@ const MyProjects = React.createClass({
   },
 });
 
-module.exports = MyProjects;
+module.exports = OrgProjects;
