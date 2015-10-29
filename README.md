@@ -6,4 +6,24 @@
 
 # badger
 
-Badger is a dashboard for viewing Key Performance Indicators for Github projects in a grid; namely, those fancy badges at the top of their README.md files.
+Badger is a dashboard for viewing Key Performance Indicators for Github projects in a grid; namely, those fancy badges at the top of README.md files.
+
+# Development
+
+## Prerequisites
+* NodeJS
+* MongoDB (on Mac, `brew install mongodb`)
+
+## Setup
+There is a gulp build system in place, which has a watching task: `develop`. This task will bounce the server on server-code changes and re-run linting and tests. The task will also re-bundle, lint, and test client code when it changes.
+```bash
+> npm install 
+> gulp develop
+```
+
+## Project Layout
+    └─── client/  (Client Code, ReactJS)
+    └─── config/  (Configuration Management)
+    └─── gulp/    (Build System Definition) 
+    └─── scripts/ (Git, NPM, and Utility Scripts)
+    └─── server/  (NodeJS Server Code)
