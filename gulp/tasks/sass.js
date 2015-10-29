@@ -1,13 +1,18 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const lload = require('gulp-livereload');
+const plumber = require('gulp-plumber');
+const sourcemaps = require('gulp-sourcemaps');
+const cssmin = require('gulp-cssmin');
 const config = require('../config');
 
-const STYLES_GLOB = 'client/styles/**/*.scss';
-
 gulp.task('sass', () => {
-  gulp.src(STYLES_GLOB)
-    .pipe(sass().on('error', sass.logError))
+  gulp.src(config.client.styles)
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(cssmin())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.client.dist.path))
     .pipe(lload());
 });

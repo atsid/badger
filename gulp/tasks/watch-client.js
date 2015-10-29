@@ -11,6 +11,7 @@ const source = require('vinyl-source-stream');
 const lrload = require('livereactload');
 
 const browserifyConf = require('./browserify_config');
+const plumber = require('gulp-plumber');
 
 gulp.task('watch-client', () => {
   // watch js and lint
@@ -22,6 +23,8 @@ gulp.task('watch-client', () => {
   // watch assets
   gulp.watch(config.client.assets, ['copy-assets']);
 
+  // watch assets
+  gulp.watch(config.client.images, ['imagemin']);
 
   // watch sass
   lload.listen();
@@ -39,11 +42,13 @@ gulp.task('watch-client', () => {
   b.fullPaths = true;
 
   const watcher = watchify(browserify(b));
+
   function bundle() {
     return watcher
       .on('error', gutil.log.bind(gutil, 'Browserify Error'))
       .bundle()
       .on('error', gutil.log.bind(gutil, 'Bundling Error'))
+      .pipe(plumber())
       .pipe(source(config.client.dist.bundle))
       .pipe(buffer())
       .pipe(gulp.dest(config.client.dist.path));

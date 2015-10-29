@@ -1,6 +1,11 @@
 const User = require('app/persistence').models.User;
 const debug = require('debug')('app:auth');
 
+/**
+ * The default token handler - does nothing with the provider tokens
+ * @param user
+ * @returns {*}
+ */
 function defaultHandleTokens(user) {
   return user;
 }

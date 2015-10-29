@@ -16,7 +16,8 @@ module.exports = {
   all: sourceNode('all', '{client,server}'),
   build: ['gulpfile.js', 'gulp/**/*.js'],
   client: sourceNode('client', 'client', {
-    styles: ['client/styles/**/*.scss'],
+    styles: ['client/**/*.{scss,sass}'],
+    images: ['client/**/*.{gif,jpeg,jpg,png,svg}'],
     staticJade: ['client/**/*.jade', '!client/**/*.dynamic.jade'],
     assets: ['client/assets/**/*.*'],
     html: ['client/**/*.html'],
