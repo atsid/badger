@@ -1,5 +1,5 @@
 const debug = require('debug')('app:components:my_project');
-const React = require('react/addons');
+const React = require('react');
 
 // Components
 const BadgeTableLoader = require('./BadgeTableLoader');

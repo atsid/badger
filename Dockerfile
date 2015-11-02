@@ -12,10 +12,9 @@ FROM node
 RUN mkdir /app
 ADD ./package.json /app/package.json
 ADD ./.nodemonignore /app/.nodemonignore
-ADD ./.npmrc /app/.npmrc
 ADD ./.eslintrc /app/.eslintrc
-ADD ./scripts /app/scripts
-ADD ./gulp /app/gulp
+ADD ./.editorconfig /app/.editorconfig
+ADD ./.nodemonignore /app/.nodemonignore
 ADD ./gulpfile.js /app/gulpfile.js
 ADD ./index.js /app/index.js
 

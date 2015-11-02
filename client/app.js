@@ -1,4 +1,5 @@
-const React = require('react/addons');
+const React = require('react');
+const ReactDOM = require('react-dom');
 const Application = require('./components/Application');
 
 window.onload = function onload() {
@@ -6,5 +7,5 @@ window.onload = function onload() {
   if (window.location.hash.indexOf('_=_') > -1) {
     window.location.hash = '';
   }
-  React.render(<Application />, document.body);
+  ReactDOM.render(<Application />, document.body);
 };

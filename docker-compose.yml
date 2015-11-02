@@ -8,6 +8,7 @@ app:
     - ./client:/app/client
     - ./config:/app/config
     - ./gulp:/app/gulp
+    - ./scripts:/app/scripts
     - ./server:/app/server
     - ./target:/app/target
     - ./public:/app/public
