@@ -16,7 +16,7 @@
     "prestart": "npm run create-app-symlink"
   },
   "repository": {
-    "type": "git",
+    "type": "git"
   },
   "bugs": {
   },
