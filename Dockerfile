@@ -15,8 +15,6 @@ ADD ./.nodemonignore /app/.nodemonignore
 ADD ./.eslintrc /app/.eslintrc
 ADD ./.editorconfig /app/.editorconfig
 ADD ./.nodemonignore /app/.nodemonignore
-ADD ./scripts /app/scripts
-ADD ./gulp /app/gulp
 ADD ./gulpfile.js /app/gulpfile.js
 ADD ./index.js /app/index.js
 
