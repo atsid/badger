@@ -6,3 +6,7 @@ application {
       source = "github.com/hashicorp/otto/examples/mongodb"
   }
 }
+
+customization "node" {
+   node_version = "4.2.2"
+}

@@ -18,7 +18,10 @@
   "repository": {
     "type": "git"
   },
-  "bugs": {},
+  "engines": {
+    "node": ">=4.2.2 <5.x"
+  },
+  "bugs": "https://github.com/atsid/badger/issues",
   "author": {
     "name": "Chris Trevino",
     "email": "chris.trevino@atsid.com",
