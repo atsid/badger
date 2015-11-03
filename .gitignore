@@ -3,6 +3,8 @@ logs
 *.log
 *~
 
+.otto
+
 # Runtime data
 pids
 *.pid
