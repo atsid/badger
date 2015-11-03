@@ -1,0 +1,8 @@
+application {
+  name = "badger"
+  type = "node"
+
+  dependency {
+      source = "github.com/hashicorp/otto/examples/mongodb"
+  }
+}
