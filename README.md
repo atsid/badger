@@ -15,19 +15,27 @@ Badger is a dashboard for viewing Key Performance Indicators for Github projects
 * MongoDB (on Mac, `brew install mongodb`)
 
 ## Setup
+There is a gulp build system in place, which has a watching task: `develop`. This task will bounce the server on server-code changes and re-run linting and tests. The task will also re-bundle, lint, and test client code when it changes.
 
-# Dockerized Development
+# Otto Setup (recommended) 
+```bash
+> otto dev
+> otto dev ssh
+[vagrant]> npm install
+[vagrant]> npm run develop
+```
+
+# Docker-Compose Setup
 The application can be run from within Docker.
 ```bash
 > docker-compose up
 > docker-compose run app npm run develop
 ```
 
-# Local Development
-There is a gulp build system in place, which has a watching task: `develop`. This task will bounce the server on server-code changes and re-run linting and tests. The task will also re-bundle, lint, and test client code when it changes.
+# Local Setup
 ```bash
 > npm install 
-> gulp develop
+> npm run develop
 ```
 
 ## Project Layout
