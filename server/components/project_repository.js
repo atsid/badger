@@ -21,7 +21,7 @@ class ProjectRepository {
 
   getProjects(user, page = 0) {
     const client = github.createClient(user);
-    return client.repos.gmn etReposAsync({
+    return client.repos.getReposAsync({
       org: this.github.config.org,
       page,
       per_page: PAGE_SIZE,
