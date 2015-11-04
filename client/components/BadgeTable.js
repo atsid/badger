@@ -41,6 +41,7 @@ const BadgeTable = React.createClass({
               <TableHeaderColumn tooltip="Coverage">Coverage</TableHeaderColumn>
               <TableHeaderColumn tooltip="Dependencies">Dependencies</TableHeaderColumn>
               <TableHeaderColumn tooltip="Dev Dependencies">Dev Dependencies</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Language">Language</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
@@ -53,6 +54,8 @@ const BadgeTable = React.createClass({
                   <TableRowColumn dangerouslySetInnerHTML={{__html: p.badges.coverage}}/>
                   <TableRowColumn dangerouslySetInnerHTML={{__html: p.badges.dependencies}}/>
                   <TableRowColumn dangerouslySetInnerHTML={{__html: p.badges.devDependencies}}/>
+                  {/* TODO - when main.css starts to load correctly, remove the inline style in the line below */}
+                  <TableRowColumn><span className="languageCell" style={{fontSize: '12px', fontWeight: 'bold', color: '#888'}}>{p.language}</span></TableRowColumn>
                 </TableRow>
               ))
             }
