@@ -23,15 +23,6 @@ The application can be run from within Docker.
 > docker-compose up
 > docker-compose run app npm run develop
 ```
-
-# Otto Setup (WIP) 
-```bash
-> otto dev
-> otto dev ssh
-[vagrant]> npm install
-[vagrant]> npm run develop
-```
-
 # Local Setup
 ```bash
 > npm install 
