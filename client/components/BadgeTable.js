@@ -11,18 +11,7 @@ const TableRowColumn = mui.TableRowColumn;
 const TableHeaderColumn = mui.TableHeaderColumn;
 
 function privacy(project) {
-  // TODO - remove the inline style below once main.scss is properly generating main.scss
-  return project.private && (<span className="projectPrivacy" style={{ display: 'inline-block',
-      font: '13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
-      padding: '4px 5px 3px',
-      fontSize: '11px',
-      fontWeight: 300,
-      color: '#a1882b',
-      verticalAlign: 'middle',
-      backgroundColor: '#ffefc6',
-      borderRadius: '3px',
-      marginLeft: '1em',
-  }}> PRIVATE</span>) || '';
+  return project.private && (<span className="projectPrivacy"> PRIVATE</span>) || '';
 }
 
 function githubUrl(project) {
@@ -41,7 +30,7 @@ const BadgeTable = React.createClass({
         <Table selectable={false} fixedHeader={true}>
           <TableHeader displaySelectAll={false}>
             <TableRow>
-              <TableHeaderColumn colSpan="6" tooltip="Project Badges" style={{textAlign: 'center'}}>
+              <TableHeaderColumn colSpan="7" tooltip="Project Badges" style={{textAlign: 'center'}}>
                 Project Badges
               </TableHeaderColumn>
             </TableRow>
@@ -59,14 +48,13 @@ const BadgeTable = React.createClass({
             {
               projects.map((p, i) => (
                 <TableRow key={i}>
-                  <TableRowColumn style={{height: 'auto', padding: '6px 24px 7px 24px'}}><a href={githubUrl(p)}>{p.name}</a>{privacy(p)}</TableRowColumn>
-                  <TableRowColumn style={{height: 'auto', padding: '6px 24px 7px 24px'}} dangerouslySetInnerHTML={{__html: p.badges.build}}/>
-                  <TableRowColumn style={{height: 'auto', padding: '6px 24px 7px 24px'}} dangerouslySetInnerHTML={{__html: p.badges.quality}}/>
-                  <TableRowColumn style={{height: 'auto', padding: '6px 24px 7px 24px'}} dangerouslySetInnerHTML={{__html: p.badges.coverage}}/>
-                  <TableRowColumn style={{height: 'auto', padding: '6px 24px 7px 24px'}} dangerouslySetInnerHTML={{__html: p.badges.dependencies}}/>
-                  <TableRowColumn style={{height: 'auto', padding: '6px 24px 7px 24px'}} dangerouslySetInnerHTML={{__html: p.badges.devDependencies}}/>
-                  {/* TODO - when main.css starts to load correctly, remove the inline style in the line below */}
-                  <TableRowColumn><span className="languageCell" style={{fontSize: '12px', fontWeight: 'bold', color: '#888'}}>{p.language}</span></TableRowColumn>
+                  <TableRowColumn className="badgeTableCell"><a href={githubUrl(p)}>{p.name}</a>{privacy(p)}</TableRowColumn>
+                  <TableRowColumn className="badgeTableCell" dangerouslySetInnerHTML={{__html: p.badges.build}}/>
+                  <TableRowColumn className="badgeTableCell" dangerouslySetInnerHTML={{__html: p.badges.quality}}/>
+                  <TableRowColumn className="badgeTableCell" dangerouslySetInnerHTML={{__html: p.badges.coverage}}/>
+                  <TableRowColumn className="badgeTableCell" dangerouslySetInnerHTML={{__html: p.badges.dependencies}}/>
+                  <TableRowColumn className="badgeTableCell" dangerouslySetInnerHTML={{__html: p.badges.devDependencies}}/>
+                  <TableRowColumn><span className="languageCell">{p.language}</span></TableRowColumn>
                 </TableRow>
               ))
             }
