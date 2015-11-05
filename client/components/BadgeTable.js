@@ -11,7 +11,18 @@ const TableRowColumn = mui.TableRowColumn;
 const TableHeaderColumn = mui.TableHeaderColumn;
 
 function privacy(project) {
-  return project.private && (<b> (Private)</b>) || '';
+  // TODO - remove the inline style below once main.scss is properly generating main.scss
+  return project.private && (<span className="projectPrivacy" style={{ display: 'inline-block',
+      font: '13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
+      padding: '4px 5px 3px',
+      fontSize: '11px',
+      fontWeight: 300,
+      color: '#a1882b',
+      verticalAlign: 'middle',
+      backgroundColor: '#ffefc6',
+      borderRadius: '3px',
+      marginLeft: '1em',
+  }}> PRIVATE</span>) || '';
 }
 
 function githubUrl(project) {
