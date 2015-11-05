@@ -62,6 +62,7 @@ class ProjectRepository {
 
   _transformRepository(client, repo) {
     const name = repo.full_name;
+    const language = repo.language;
     const isPrivate = repo.private;
     return this._getReadme.apply(this, [client, name]).then((readme) => {
       const badgeData = this.badgeScraper
@@ -72,7 +73,7 @@ class ProjectRepository {
 
       const badges = {};
       badgeData.forEach((b) => badges[b.category] = b.content);
-      return {name, 'private': isPrivate, badges};
+      return {name, 'private': isPrivate, badges, language};
     });
   }
 
