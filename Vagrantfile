@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'git'
     chef.add_recipe 'nginx'
     chef.add_recipe 'mongodb::default'
-    chef.add_recipe 'nodejs'
+    chef.add_recipe 'nodejs::nodejs_from_binary'
     chef.add_recipe 'oh_my_zsh'
     chef.add_recipe 'cachefilesd' # See NOTE1
     chef.add_recipe 'dev-environment'

@@ -6,8 +6,7 @@ cookbook "apt"
 cookbook "mongodb", {:github=>"edelight/chef-mongodb", :ref=>"0.16.0"}
 cookbook "git", {}
 cookbook "nginx", {}
-cookbook "nodejs", {:github=>"mdxp/nodejs-cookbook"}
+cookbook "nodejs", {:github=>"redguide/nodejs"}
 cookbook 'oh_my_zsh', {:github=>"shingara/oh-my-zsh-chef"}
 cookbook 'zsh'
-
-
+cookbook 'nvm', '~> 0.1.6'
