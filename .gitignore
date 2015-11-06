@@ -38,4 +38,10 @@ node_modules
 .idea/
 .vagrant/
 
+tmp/
+
+cookbooks/
+
+Cheffile.lock
+
 npm-shrinkwrap.json

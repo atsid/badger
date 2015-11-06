@@ -9,21 +9,37 @@
 Badger is a dashboard for viewing Key Performance Indicators for Github projects in a grid; namely, those fancy badges at the top of README.md files.
 
 # Development
+There are a few ways to get the project started. 
 
-## Prerequisites
-* NodeJS
-* MongoDB (on Mac, `brew install mongodb`)
+## Vagrant Quickstart
+This sets up a sandboxed Ubuntu instance with MongoDB and NodeJS 4.2.2. Development tools such as Git, oh-my-zsh, and emacs are installed. 
 
-## Setup
-There is a gulp build system in place, which has a watching task: `develop`. This task will bounce the server on server-code changes and re-run linting and tests. The task will also re-bundle, lint, and test client code when it changes.
+### Prerequisites:
+ * Vagrant
+ * Virtualbox
+ * Ruby
+```bash
+> ./quickstart.sh
+> vagrant ssh
+> npm run develop
+```
 
-# Docker-Compose Setup
-The application can be run from within Docker.
+## Docker-Compose
+This starts up the application's development loop. The `node_modules` directory is not synced to the host, so you can run docker-compose and localhost development simultaneously.
+
+### Prerequisites:
+ * Docker
 ```bash
 > docker-compose up
 > docker-compose run app npm run develop
 ```
-# Local Setup
+
+## Localhost
+Basic NodeJS installation procedure, requires a running database and a recent version of NodeJS.
+
+### Prerequisites:
+ * NodeJS 4.x
+ * MongoDB
 ```bash
 > npm install 
 > npm run develop

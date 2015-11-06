@@ -1,0 +1,12 @@
+# encoding: utf-8
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook "apt"
+cookbook "mongodb", {:github=>"edelight/chef-mongodb", :ref=>"0.16.0"}
+cookbook "git", {}
+cookbook "nginx", {}
+cookbook "nodejs", {:github=>"redguide/nodejs"}
+cookbook 'oh_my_zsh', {:github=>"shingara/oh-my-zsh-chef"}
+cookbook 'zsh'
+cookbook 'nvm', '~> 0.1.6'
