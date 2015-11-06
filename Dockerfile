@@ -25,5 +25,6 @@ WORKDIR /app
 RUN npm install
 RUN npm install -g gulp
 EXPOSE 9000
+EXPOSE 35729
 ENV DEBUG=app*
 CMD ["npm", "run", "develop"]

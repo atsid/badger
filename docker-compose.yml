@@ -16,7 +16,8 @@ app:
   links:
     - mongo
   ports:
-    - 9000:9000
+    - "9000:9000"
+    - "35729:35729"
   environment:
     - DEBUG=app*,jefferson*,mountie*
     - DOCKER_COMPOSED=1
