@@ -12,6 +12,8 @@ Badger is a dashboard for viewing Key Performance Indicators for Github projects
 There are a few ways to get the project started. 
 
 ## Vagrant Quickstart
+This sets up a sandboxed Ubuntu instance with MongoDB and NodeJS 4.2.2. Development tools such as Git, oh-my-zsh, and emacs are installed. 
+
 ### Prerequisites:
  * Vagrant
  * Virtualbox
@@ -23,6 +25,8 @@ There are a few ways to get the project started.
 ```
 
 ## Docker-Compose
+This starts up the application's development loop. The `node_modules` directory is not synced to the host, so you can run docker-compose and localhost development simultaneously.
+
 ### Prerequisites:
  * Docker
 ```bash
@@ -31,6 +35,8 @@ There are a few ways to get the project started.
 ```
 
 ## Localhost
+Basic NodeJS installation procedure, requires a running database and a recent version of NodeJS.
+
 ### Prerequisites:
  * NodeJS 4.x
  * MongoDB
