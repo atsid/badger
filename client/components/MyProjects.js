@@ -1,4 +1,3 @@
-const debug = require('debug')('app:components:my_project');
 const React = require('react');
 
 // Components
@@ -24,7 +23,6 @@ const MyProjects = React.createClass({
         this.setState({projects: projects, loading: false});
       })
       .catch((err) => {
-        debug('error loading store data', err);
         this.setState({loading: false});
       });
   },

@@ -1,4 +1,3 @@
-const debug = require('debug')('app:components:application');
 const React = require('react');
 
 // Components
@@ -40,7 +39,6 @@ const Skeleton = React.createClass({
     return this.context.stores.users.getCurrentUser()
       .then((user) => this.setState({user, loading: false}))
       .catch((err) => {
-        debug('error loading store data', err);
         this.setState({loading: false});
       });
   },

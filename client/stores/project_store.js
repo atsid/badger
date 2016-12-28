@@ -1,10 +1,8 @@
 const request = require('superagent-bluebird-promise');
-const debug = require('debug')('app:stores:project_store');
 
 function getReposFromUrl(url) {
   return request.get(url)
-    .then((res) => res.body)
-    .catch((err) => debug('could not load projects', err));
+    .then((res) => res.body));
 }
 
 /**
