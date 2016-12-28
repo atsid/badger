@@ -23,7 +23,7 @@ class UserStore {
           this.state.currentUser = {result: res.body};
           return res.body;
         })
-        .catch((err) => {
+        .catch(() => {
           this.state.currentUser = {result: null};
           return null;
         });

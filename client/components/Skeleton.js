@@ -38,7 +38,7 @@ const Skeleton = React.createClass({
     this.state = {projects: [], loading: true};
     return this.context.stores.users.getCurrentUser()
       .then((user) => this.setState({user, loading: false}))
-      .catch((err) => {
+      .catch(() => {
         this.setState({loading: false});
       });
   },

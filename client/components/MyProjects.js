@@ -22,7 +22,7 @@ const MyProjects = React.createClass({
       .then((projects) => {
         this.setState({projects: projects, loading: false});
       })
-      .catch((err) => {
+      .catch(() => {
         this.setState({loading: false});
       });
   },

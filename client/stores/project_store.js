@@ -2,7 +2,7 @@ const request = require('superagent-bluebird-promise');
 
 function getReposFromUrl(url) {
   return request.get(url)
-    .then((res) => res.body));
+    .then(res => res.body);
 }
 
 /**
