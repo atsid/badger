@@ -1,0 +1,59 @@
+'use strict';
+
+var React = require('react');
+
+// Router Components
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
+
+// Application Components
+var NoMatch = require('./NoMatch');
+var Skeleton = require('./Skeleton');
+var Dashboard = require('./Dashboard');
+var Login = require('./Login');
+var MyProjects = require('./MyProjects');
+var OrgProjects = require('./OrgProjects');
+var UserProjects = require('./UserProjects');
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+var injectTapEventPlugin = require('react-tap-event-plugin');
+injectTapEventPlugin();
+
+var createBrowserHistory = require('history/lib/createBrowserHistory');
+
+var Application = React.createClass({
+  displayName: 'Application',
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+    stores: React.PropTypes.object.isRequired
+  },
+
+  getChildContext: function getChildContext() {
+    return {
+      stores: require('./../stores')
+    };
+  },
+  render: function render() {
+    return React.createElement(
+      Router,
+      { history: createBrowserHistory() },
+      React.createElement(
+        Route,
+        { path: '/', component: Skeleton },
+        React.createElement(IndexRoute, { component: Dashboard }),
+        React.createElement(Route, { path: 'login', component: Login }),
+        React.createElement(Route, { path: 'mine', component: MyProjects }),
+        React.createElement(Route, { path: 'org/:org', component: OrgProjects }),
+        React.createElement(Route, { path: 'user/:user', component: UserProjects }),
+        React.createElement(Route, { path: '*', component: NoMatch })
+      )
+    );
+  }
+});
+module.exports = Application;

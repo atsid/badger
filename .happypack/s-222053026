@@ -1,0 +1,35 @@
+'use strict';
+
+var React = require('react');
+
+// Components
+var mui = require('material-ui');
+var CircularProgress = mui.CircularProgress;
+var BadgeTable = require('./BadgeTable');
+
+var BadgeTableLoader = React.createClass({
+  displayName: 'BadgeTableLoader',
+
+  propTypes: {
+    loadState: React.PropTypes.object.isRequired
+  },
+
+  render: function render() {
+    var result = null;
+    var state = this.props.loadState;
+    if (state.loading) {
+      result = React.createElement(CircularProgress, { mode: 'indeterminate', size: 2 });
+    } else if (state.projects.length > 0) {
+      result = React.createElement(BadgeTable, { projects: state.projects });
+    } else {
+      result = React.createElement(
+        'h1',
+        null,
+        'No Projects Found!'
+      );
+    }
+    return result;
+  }
+});
+
+module.exports = BadgeTableLoader;

@@ -1,0 +1,44 @@
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var request = require('superagent-bluebird-promise');
+
+function getReposFromUrl(url) {
+  return request.get(url).then(function (res) {
+    return res.body;
+  });
+}
+
+/**
+ * A data store for Projects
+ */
+
+var ProjectStore = function () {
+  function ProjectStore() {
+    _classCallCheck(this, ProjectStore);
+  }
+
+  _createClass(ProjectStore, [{
+    key: 'getMyProjects',
+    value: function getMyProjects() {
+      return getReposFromUrl('/api/repos/mine');
+    }
+  }, {
+    key: 'getOrgProjects',
+    value: function getOrgProjects(org) {
+      return getReposFromUrl('/api/repos/orgs/' + org);
+    }
+  }, {
+    key: 'getUserProjects',
+    value: function getUserProjects(user) {
+      return getReposFromUrl('/api/repos/users/' + user);
+    }
+  }]);
+
+  return ProjectStore;
+}();
+
+module.exports = ProjectStore;

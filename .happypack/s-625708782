@@ -1,0 +1,132 @@
+'use strict';
+
+var React = require('react');
+
+// Components
+var mui = require('material-ui');
+var Paper = mui.Paper;
+var Table = mui.Table;
+var TableBody = mui.TableBody;
+var TableHeader = mui.TableHeader;
+var TableRow = mui.TableRow;
+var TableRowColumn = mui.TableRowColumn;
+var TableHeaderColumn = mui.TableHeaderColumn;
+
+function privacy(project) {
+  return project.private && React.createElement(
+    'span',
+    { className: 'projectPrivacy' },
+    ' PRIVATE'
+  ) || '';
+}
+
+function githubUrl(project) {
+  return 'http://github.com/' + project.name;
+}
+
+var BadgeTable = React.createClass({
+  displayName: 'BadgeTable',
+
+  propTypes: {
+    projects: React.PropTypes.array.isRequired
+  },
+
+  render: function render() {
+    var projects = this.props.projects || [];
+    return React.createElement(
+      Paper,
+      null,
+      React.createElement(
+        Table,
+        { selectable: false, fixedHeader: true },
+        React.createElement(
+          TableHeader,
+          { displaySelectAll: false },
+          React.createElement(
+            TableRow,
+            null,
+            React.createElement(
+              TableHeaderColumn,
+              { colSpan: '7', tooltip: 'Project Badges', style: { textAlign: 'center' } },
+              'Project Badges'
+            )
+          ),
+          React.createElement(
+            TableRow,
+            null,
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Repo' },
+              'Repo'
+            ),
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Build' },
+              'Build'
+            ),
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Quality' },
+              'Quality'
+            ),
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Coverage' },
+              'Coverage'
+            ),
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Dependencies' },
+              'Dependencies'
+            ),
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Dev Dependencies' },
+              'Dev Dependencies'
+            ),
+            React.createElement(
+              TableHeaderColumn,
+              { tooltip: 'Language' },
+              'Language'
+            )
+          )
+        ),
+        React.createElement(
+          TableBody,
+          { displayRowCheckbox: false },
+          projects.map(function (p, i) {
+            return React.createElement(
+              TableRow,
+              { key: i },
+              React.createElement(
+                TableRowColumn,
+                { className: 'badgeTableCell' },
+                React.createElement(
+                  'a',
+                  { href: githubUrl(p) },
+                  p.name
+                ),
+                privacy(p)
+              ),
+              React.createElement(TableRowColumn, { className: 'badgeTableCell', dangerouslySetInnerHTML: { __html: p.badges.build } }),
+              React.createElement(TableRowColumn, { className: 'badgeTableCell', dangerouslySetInnerHTML: { __html: p.badges.quality } }),
+              React.createElement(TableRowColumn, { className: 'badgeTableCell', dangerouslySetInnerHTML: { __html: p.badges.coverage } }),
+              React.createElement(TableRowColumn, { className: 'badgeTableCell', dangerouslySetInnerHTML: { __html: p.badges.dependencies } }),
+              React.createElement(TableRowColumn, { className: 'badgeTableCell', dangerouslySetInnerHTML: { __html: p.badges.devDependencies } }),
+              React.createElement(
+                TableRowColumn,
+                null,
+                React.createElement(
+                  'span',
+                  { className: 'languageCell' },
+                  p.language
+                )
+              )
+            );
+          })
+        )
+      )
+    );
+  }
+});
+module.exports = BadgeTable;

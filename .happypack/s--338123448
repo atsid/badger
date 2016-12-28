@@ -1,0 +1,12 @@
+'use strict';
+
+var UserStore = require('./user_store');
+var ProjectStore = require('./project_store');
+
+var users = new UserStore();
+var projects = new ProjectStore();
+
+module.exports = {
+  users: users,
+  projects: projects
+};

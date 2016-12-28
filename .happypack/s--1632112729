@@ -1,0 +1,40 @@
+'use strict';
+
+var React = require('react');
+
+// Components
+var BadgeTableLoader = require('./BadgeTableLoader');
+
+var OrgProjects = React.createClass({
+  displayName: 'OrgProjects',
+
+  propTypes: {
+    params: React.PropTypes.object
+  },
+  contextTypes: {
+    stores: React.PropTypes.object.isRequired
+  },
+
+  getInitialState: function getInitialState() {
+    return { projects: [] };
+  },
+  componentDidMount: function componentDidMount() {
+    this.getStateFromStore();
+  },
+  getStateFromStore: function getStateFromStore() {
+    var _this = this;
+
+    var org = this.props.params.org;
+    this.setState({ projects: [], loading: true });
+    return this.context.stores.projects.getOrgProjects(org).then(function (projects) {
+      _this.setState({ projects: projects, loading: false });
+    }).catch(function () {
+      _this.setState({ loading: false });
+    });
+  },
+  render: function render() {
+    return React.createElement(BadgeTableLoader, { loadState: this.state });
+  }
+});
+
+module.exports = OrgProjects;

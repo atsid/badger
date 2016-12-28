@@ -1,0 +1,44 @@
+@import "_variables";
+@import "_reset";
+
+// Insert Sass Styles
+
+.projectBadge {
+  display: inline;
+}
+
+.badgeBlock {
+  display: inline-block;
+}
+
+.projectName {
+  width: 300px;
+  min-width: 300px;
+  margin: 10px;
+}
+
+.projectPrivacy {
+    display: inline-block;
+    font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    padding: 4px 5px 3px;
+    font-size: 11px;
+    font-weight: 300;
+    color: #a1882b;
+    vertical-align: middle;
+    background-color: #ffefc6;
+    border-radius: 3px;
+    margin-left: 1em;
+}
+
+/* Attempting to match the look of the language display in Github */
+.languageCell {
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
+  font-family: Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.badgeTableCell {
+  height: auto;
+  padding: 6px 24px 7px 24px;
+}

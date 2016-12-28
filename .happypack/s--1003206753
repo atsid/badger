@@ -1,0 +1,49 @@
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var request = require('superagent-bluebird-promise');
+
+/**
+ * A data store for Projects
+ */
+
+var UserStore = function () {
+  function UserStore() {
+    _classCallCheck(this, UserStore);
+
+    this.state = {
+      currentUser: null,
+      currentUserPromise: null
+    };
+  }
+
+  _createClass(UserStore, [{
+    key: 'getCurrentUser',
+    value: function getCurrentUser() {
+      var _this = this;
+
+      var promise = void 0;
+      if (this.state.currentUser) {
+        promise = Promise.resolve(this.state.currentUser.result);
+      } else if (this.state.currentUserPromise) {
+        promise = this.state.currentUserPromise;
+      } else {
+        promise = this.state.currentUserPromise = request.get('/api/auth/current').then(function (res) {
+          _this.state.currentUser = { result: res.body };
+          return res.body;
+        }).catch(function () {
+          _this.state.currentUser = { result: null };
+          return null;
+        });
+      }
+      return promise;
+    }
+  }]);
+
+  return UserStore;
+}();
+
+module.exports = UserStore;

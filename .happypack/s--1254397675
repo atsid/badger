@@ -1,0 +1,19 @@
+"use strict";
+
+var React = require('react');
+
+var Login = React.createClass({
+  displayName: "Login",
+  getInitialState: function getInitialState() {
+    return {};
+  },
+  render: function render() {
+    return React.createElement(
+      "a",
+      { href: "/api/auth/github" },
+      "Login with Github"
+    );
+  }
+});
+
+module.exports = Login;

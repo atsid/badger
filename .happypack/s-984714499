@@ -1,0 +1,19 @@
+'use strict';
+
+var React = require('react');
+
+var NoMatch = React.createClass({
+  displayName: 'NoMatch',
+  getInitialState: function getInitialState() {
+    return {};
+  },
+  render: function render() {
+    return React.createElement(
+      'h1',
+      null,
+      'Derp.'
+    );
+  }
+});
+
+module.exports = NoMatch;
