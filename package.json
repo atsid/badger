@@ -33,11 +33,12 @@
   "keywords": [],
   "devDependencies": {
     "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-register": "^6.18.0",    
     "babel-eslint": "7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.18.0",
     "chai": "^3.2.0",
     "codeclimate-test-reporter": "^0.4.0",
     "css-loader": "^0.26.1",
@@ -67,8 +68,8 @@
     "url-loader": "^0.5.7",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "webpack-dev-server": "^1.16.2",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "bcryptjs": "^2.2.1",

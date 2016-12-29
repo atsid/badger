@@ -1,13 +1,16 @@
-const React = require('react');
+import React from 'react';
+import FlatButton from 'material-ui/FlatButton';
 
-const Login = React.createClass({
-  getInitialState() {
-    return {};
-  },
+const Login = () => {
+  const handleClick = () => {
+    console.log('CLICK!');
+  };
+  return (
+    <FlatButton
+      onClick={() => handleClick()}
+      label="Login with Github"
+    />
+  );
+};
 
-  render() {
-    return (<a href={`${process.env.API_URL}/auth/github`}>Login with Github</a>);
-  },
-});
-
-module.exports = Login;
+export default Login;

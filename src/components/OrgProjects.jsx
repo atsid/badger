@@ -1,39 +1,34 @@
-const React = require('react');
+import React from 'react';
+import BadgeTableLoader from './BadgeTableLoader';
 
-// Components
-const BadgeTableLoader = require('./BadgeTableLoader');
-
-const OrgProjects = React.createClass({
-  propTypes: {
-    params: React.PropTypes.object,
-  },
-  contextTypes: {
-    stores: React.PropTypes.object.isRequired,
-  },
-
-  getInitialState() {
-    return {projects: []};
-  },
+export default class OrgProjects extends React.Component {
+  constructor() {
+    super();
+    this.state = { projects: [] };
+  }
 
   componentDidMount() {
     this.getStateFromStore();
-  },
+  }
 
   getStateFromStore() {
     const org = this.props.params.org;
-    this.setState({projects: [], loading: true});
+    this.setState({ projects: [], loading: true });
     return this.context.stores.projects.getOrgProjects(org)
-      .then((projects) => {
-        this.setState({projects: projects, loading: false});
-      })
-      .catch(() => {
-        this.setState({loading: false});
-      });
-  },
+      .then(projects => this.setState({ projects, loading: false }))
+      .catch(() => this.setState({ loading: false }));
+  }
 
   render() {
     return (<BadgeTableLoader loadState={this.state} />);
-  },
-});
+  }
+}
 
-module.exports = OrgProjects;
+OrgProjects.propTypes = {
+  params: React.PropTypes.shape({
+    org: React.PropTypes.string,
+  }),
+};
+OrgProjects.contextTypes = {
+  stores: React.PropTypes.object.isRequired,
+};

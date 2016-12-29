@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-  AppBar,
-  Drawer,
-  FlatButton,
-} from 'material-ui';
-import { Router } from 'react-router';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
+import { Router, Link } from 'react-router';
 
 export default class Skeleton extends React.Component {
   constructor() {
     super();
-    this.state = { loading: true, user: null };
+    this.state = { loading: true, user: null, drawerOpen: false };
   }
 
   componentDidMount() {
@@ -17,7 +16,10 @@ export default class Skeleton extends React.Component {
   }
 
   onNavToggle() {
-    return this.nav.toggle();
+    this.setState({
+      ...this.state,
+      drawerOpen: !this.state.drawerOpen,
+    });
   }
 
   onNavChange(e, key, payload) {
@@ -35,15 +37,33 @@ export default class Skeleton extends React.Component {
   }
 
   render() {
-    const menuItems = [
-      { route: '/', text: 'Home' },
-      { route: '/mine', text: 'My Projects', disabled: !this.state.user },
-    ];
+    const home = (
+      <MenuItem key="menu.home">
+        <Link to="/">Home</Link>
+      </MenuItem>
+    );
+    const mine = (
+      <MenuItem key="menu.mine">
+        <Link to="/mine">My Projects</Link>
+      </MenuItem>
+    );
+    const logout = (
+      <MenuItem key="menu.logout">
+        <Link to="/logout">Logout</Link>
+      </MenuItem>
+    );
+    const login = (
+      <MenuItem key="menu.login">
+        <Link to="/login">Login</Link>
+      </MenuItem>
+    );
 
+    const menuItems = [home];
     if (this.state.user) {
-      menuItems.push({ route: '/logout', text: 'Logout' });
+      menuItems.push(mine);
+      menuItems.push(logout);
     } else {
-      menuItems.push({ route: '/login', text: 'Login' });
+      menuItems.push(login);
     }
 
     const appBarRightLabel = this.state.user ? this.state.user.name : 'Login';
@@ -51,15 +71,21 @@ export default class Skeleton extends React.Component {
       <div>
         <Drawer
           ref={e => (this.nav = e)}
-          menuItems={menuItems}
+          open={this.state.drawerOpen}
           docked={false}
-          onChange={this.onNavChange}
-        />
+          onChange={() => this.onNavChange()}
+          onRequestChange={() => this.setState({
+            ...this.state,
+            drawerOpen: !this.state.drawerOpen,
+          })}
+        >
+          {menuItems}
+        </Drawer>
 
         <header>
           <AppBar
             title="Badger"
-            onLeftIconButtonTouchTap={this.onNavToggle}
+            onLeftIconButtonTouchTap={() => this.onNavToggle()}
             iconElementRight={<FlatButton label={appBarRightLabel} />}
           />
         </header>

@@ -1,39 +1,36 @@
-const React = require('react');
+import React from 'react';
+import BadgeTableLoader from './BadgeTableLoader';
 
-// Components
-const BadgeTableLoader = require('./BadgeTableLoader');
-
-const UserProjects = React.createClass({
-  propTypes: {
-    params: React.PropTypes.object,
-  },
-  contextTypes: {
-    stores: React.PropTypes.object.isRequired,
-  },
-
-  getInitialState() {
-    return {projects: []};
-  },
+export default class UserProjects extends React.Component {
+  constructor() {
+    super();
+    this.state = { projects: [] };
+  }
 
   componentDidMount() {
     this.getStateFromStore();
-  },
+  }
 
   getStateFromStore() {
     const user = this.props.params.user;
-    this.setState({projects: [], loading: true});
+    this.setState({ projects: [], loading: true });
     return this.context.stores.projects.getUserProjects(user)
-      .then((projects) => {
-        this.setState({projects: projects, loading: false});
-      })
-      .catch(() => {
-        this.setState({loading: false});
-      });
-  },
+      .then(projects => this.setState({ projects, loading: false }))
+      .catch(() => this.setState({ loading: false }));
+  }
 
   render() {
     return (<BadgeTableLoader loadState={this.state} />);
-  },
-});
+  }
+}
 
-module.exports = UserProjects;
+UserProjects.propTypes = {
+  params: React.PropTypes.shape({
+    user: React.PropTypes.string,
+  }),
+};
+UserProjects.contextTypes = {
+  stores: React.PropTypes.shape({
+  }).isRequired,
+};
+

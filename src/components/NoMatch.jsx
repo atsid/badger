@@ -1,13 +1,4 @@
-const React = require('react');
+import React from 'react';
 
-const NoMatch = React.createClass({
-  getInitialState() {
-    return {};
-  },
-
-  render() {
-    return (<h1>Derp.</h1>);
-  },
-});
-
-module.exports = NoMatch;
+const NoMatch = () => <h1>Derp.</h1>;
+export default NoMatch;
