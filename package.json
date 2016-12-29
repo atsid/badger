@@ -7,7 +7,7 @@
     "serve:client": "webpack-dev-server --hot --inline --history-api-fallback --publicPath /client/",
     "install-git-hooks": "./scripts/npm/install-git-hooks.sh",
     "postinstall": "npm run install-git-hooks",
-    "lint": "eslint {src,test}/**/*.js",
+    "lint": "eslint {src,test}/**/*.{js,jsx}",
     "start": "npm run serve:clientv",
     "verify": "npm-run-all lint",
     "test": "npm run verify && gulp && gulp archive",

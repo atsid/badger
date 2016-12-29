@@ -1,9 +1,11 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
+const log = require('debug')('app:components:Login');
+
 const Login = () => {
   const handleClick = () => {
-    console.log('CLICK!');
+    log('TODO: Handle Login Click');
   };
   return (
     <FlatButton
