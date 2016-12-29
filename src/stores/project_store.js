@@ -8,18 +8,14 @@ function getReposFromUrl(url) {
 /**
  * A data store for Projects
  */
-class ProjectStore {
-  getMyProjects() {
-    return getReposFromUrl('repos/mine');
-  }
-
-  getOrgProjects(org) {
-    return getReposFromUrl(`repos/orgs/${org}`);
-  }
-
-  getUserProjects(user) {
-    return getReposFromUrl(`repos/users/${user}`);
-  }
+export function getMyProjects() {
+  return getReposFromUrl('repos/mine');
 }
 
-module.exports = ProjectStore;
+export function getOrgProjects(org) {
+  return getReposFromUrl(`repos/orgs/${org}`);
+}
+
+export function getUserProjects(user) {
+  return getReposFromUrl(`repos/users/${user}`);
+}

@@ -1,9 +1,9 @@
-const request = require('superagent-bluebird-promise');
+import request from 'superagent-bluebird-promise';
 
 /**
  * A data store for Projects
  */
-class UserStore {
+export default class UserStore {
   constructor() {
     this.state = {
       currentUser: null,
@@ -31,5 +31,3 @@ class UserStore {
     return promise;
   }
 }
-
-module.exports = UserStore;

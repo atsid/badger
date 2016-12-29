@@ -1,6 +1,6 @@
 require('../common.spec/spec.helpers');
 const { expect } = require('chai');
-const UserStore = require('./user_store');
+const UserStore = require('../../src/stores/user_store');
 const nock = require('nock');
 
 describe('The User Store', () => {
@@ -13,7 +13,7 @@ describe('The User Store', () => {
   });
 
   it('can retrieve the current user', function test() {
-    nock('http://localhost').get('/api/auth/current').reply(200, { 'name': 'Bob Tester'});
+    nock('http://localhost').get('/api/auth/current').reply(200, { name: 'Bob Tester' });
 
     return this.store.getCurrentUser().then((user) => {
       expect(user).to.be.an.object;
@@ -22,7 +22,7 @@ describe('The User Store', () => {
   });
 
   it('emits null when the user cannot be found', function test() {
-    nock('http://localhost').get('/api/auth/current').reply(404, { 'data': 'Test Error'});
+    nock('http://localhost').get('/api/auth/current').reply(404, { data: 'Test Error' });
 
     return this.store.getCurrentUser().then((user) => {
       expect(user).to.be.null;
