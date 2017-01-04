@@ -16,7 +16,7 @@ injectTapEventPlugin();
  * Render the Application
  */
 window.onload = function onload() {
-  const githubCodeMatch = window.location.href.match(/\?code=(.*)/);  
+  const githubCodeMatch = window.location.href.match(/\?code=(.*)/);
   const githubCode = githubCodeMatch && githubCodeMatch[1];
 
   if (githubCode) {
