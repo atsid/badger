@@ -1,5 +1,7 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -11,32 +13,26 @@ import Login from './Login';
 import MyProjects from './MyProjects';
 import OrgProjects from './OrgProjects';
 import UserProjects from './UserProjects';
-import stores from './../stores';
 
-export default class Application extends React.Component {
-  getChildContext() {
-    return { stores };
-  }
+import store from '../state';
 
-  render() {
-    return (
-      <MuiThemeProvider>
-        <Router history={createBrowserHistory()}>
-          <Route path="/" component={Skeleton}>
-            <IndexRoute component={Dashboard} />
-            <Route path="login" component={Login} />
-            <Route path="mine" component={MyProjects} />
-            <Route path="org/:org" component={OrgProjects} />
-            <Route path="user/:user" component={UserProjects} />
-            <Route path="*" component={NoMatch} />
-          </Route>
-        </Router>
-      </MuiThemeProvider>
-    );
-  }
-}
+const history = syncHistoryWithStore(createBrowserHistory(), store);
 
-Application.childContextTypes = {
-  muiTheme: React.PropTypes.object,
-  stores: React.PropTypes.object.isRequired,
-};
+const Application = () => (
+  <Provider store={store}>
+    <MuiThemeProvider>
+      <Router history={history}>
+        <Route path="/" component={Skeleton}>
+          <IndexRoute component={Dashboard} />
+          <Route path="login" component={Login} />
+          <Route path="mine" component={MyProjects} />
+          <Route path="org/:org" component={OrgProjects} />
+          <Route path="user/:user" component={UserProjects} />
+          <Route path="*" component={NoMatch} />
+        </Route>
+      </Router>
+    </MuiThemeProvider>
+  </Provider>
+);
+
+export default Application;

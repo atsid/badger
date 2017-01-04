@@ -1,12 +1,13 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
-const log = require('debug')('app:components:Login');
+const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`;
 
 const Login = () => {
   const handleClick = () => {
-    log('TODO: Handle Login Click');
+    window.open(GITHUB_AUTH_URL);
   };
+
   return (
     <FlatButton
       onClick={() => handleClick()}

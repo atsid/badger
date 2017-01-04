@@ -45,7 +45,7 @@ const BadgeTable = (props) => {
           {
             projects.map((p, i) => (
               <TableRow key={i}>
-                <TableRowColumn className="badgeTableCell">\
+                <TableRowColumn className="badgeTableCell">
                   <a href={githubUrl(p)}>{p.name}</a>{privacy(p)}
                 </TableRowColumn>
                 <TableRowColumn
@@ -87,3 +87,4 @@ BadgeTable.propTypes = {
   ).isRequired,
 };
 
+export default BadgeTable;

@@ -1,34 +1,38 @@
 import React from 'react';
-import BadgeTableLoader from './BadgeTableLoader';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import BadgeTable from './BadgeTable';
+import { getOrgRepos } from '../state/actions/projects';
+import flatten from './flattenProjects';
 
-export default class OrgProjects extends React.Component {
+class OrgProjects extends React.Component {
   constructor() {
     super();
     this.state = { projects: [] };
   }
 
   componentDidMount() {
-    this.getStateFromStore();
-  }
-
-  getStateFromStore() {
     const org = this.props.params.org;
-    this.setState({ projects: [], loading: true });
-    return this.context.stores.projects.getOrgProjects(org)
-      .then(projects => this.setState({ projects, loading: false }))
-      .catch(() => this.setState({ loading: false }));
+    this.props.onGetOrgRepos(org);
   }
 
   render() {
-    return (<BadgeTableLoader loadState={this.state} />);
+    const { projects } = this.props;
+    const org = this.props.params.org;
+    return (<BadgeTable projects={flatten(projects[org])} />);
   }
 }
-
 OrgProjects.propTypes = {
-  params: React.PropTypes.shape({
-    org: React.PropTypes.string,
+  projects: React.PropTypes.object, // eslint-disable-line
+  onGetOrgRepos: React.PropTypes.func,
+  params: React.PropTypes.object, // eslint-disable-line
+};
+
+export default connect(
+  state => ({
+    projects: state.app.projects.reposByOrg,
   }),
-};
-OrgProjects.contextTypes = {
-  stores: React.PropTypes.object.isRequired,
-};
+  dispatch => bindActionCreators({
+    onGetOrgRepos: getOrgRepos,
+  }, dispatch),
+)(OrgProjects);

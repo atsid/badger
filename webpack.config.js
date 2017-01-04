@@ -11,15 +11,18 @@ const isProdLike = (isProd || isInteg);
 const apiUrl = 'https://badger.atsid.net/api';
 const nodeEnv = isProdLike ? 'production' : stage || 'development';
 const { version } = packageJson;
-const debug = process.env.DEBUG || (isProdLike ? '' : 'app*');
 const devtool = isProdLike ? 'cheap-source-map' : 'eval-source-map';
+const githubClientId = process.env.GITHUB_CLIENT_ID;
 
 module.exports = {
   devtool,
   context: path.join(__dirname, 'src'),
   entry: {
     javascript: './app.jsx',
-    html: './index.html',
+    html: [
+      './index.html',
+      './login.html',
+    ],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -69,8 +72,8 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv),
         API_URL: JSON.stringify(apiUrl),
-        DEBUG: JSON.stringify(debug),
         VERSION: JSON.stringify(version),
+        GITHUB_CLIENT_ID: JSON.stringify(githubClientId)
       },
     }),
     // new LodashModuleReplacementPlugin(),
