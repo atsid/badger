@@ -16,9 +16,16 @@ injectTapEventPlugin();
  * Render the Application
  */
 window.onload = function onload() {
-  const githubCodeMatch = window.location.href.match(/\?code=(.*)/);
+  const githubCodeMatch = window.location.href.match(/\?code=(.*)/);  
   const githubCode = githubCodeMatch && githubCodeMatch[1];
-  ReactDOM.render(<Application authCode={githubCode} />, document.getElementById('badger'));
+
+  if (githubCode) {
+    // Send the code back to the opening window
+    window.opener.postMessage(githubCode, window.location);
+    window.close();
+  } else {
+    ReactDOM.render(<Application authCode={githubCode} />, document.getElementById('badger'));
+  }
 };
 
 /**
