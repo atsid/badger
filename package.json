@@ -8,12 +8,13 @@
     "install-git-hooks": "./scripts/npm/install-git-hooks.sh",
     "postinstall": "npm run install-git-hooks",
     "lint": "eslint {src,test}/**/*.{js,jsx}",
-    "bundle": "webpack",
+    "bundle": "NODE_ENV=production webpack",
     "mocha": "mocha",
     "start": "npm run serve:client",
     "verify": "npm-run-all --parallel lint mocha --sequential bundle",
     "test": "npm run verify",
     "develop": "gulp develop",
+    "publish": "gulp publish",
     "report-coverage": "codeclimate-test-reporter < target/test-reports/all/lcov.info"
   },
   "repository": {

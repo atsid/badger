@@ -73,7 +73,7 @@ module.exports = {
         NODE_ENV: JSON.stringify(nodeEnv),
         API_URL: JSON.stringify(apiUrl),
         VERSION: JSON.stringify(version),
-        GITHUB_CLIENT_ID: JSON.stringify(githubClientId)
+        GITHUB_CLIENT_ID: JSON.stringify(githubClientId),
       },
     }),
     // new LodashModuleReplacementPlugin(),
