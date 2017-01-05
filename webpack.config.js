@@ -19,10 +19,7 @@ module.exports = {
   context: path.join(__dirname, 'src'),
   entry: {
     javascript: './app.jsx',
-    html: [
-      './index.html',
-      './login.html',
-    ],
+    html: './index.html'
   },
   output: {
     path: path.join(__dirname, 'dist'),
