@@ -1,2 +1,6 @@
 #!/bin/bash
-GITHUB_CLIENT_ID=$INTEG_GH_CLIENT_ID NODE_ENV=production npm-run-all bundle publish
+GITHUB_CLIENT_ID=$INTEG_GH_CLIENT_ID\
+CF_DISTRO_ID=$INTEG_CF_DISTRO_ID\
+DEPLOY_BUCKET=$INTEG_DEPLOY_BUCKET\
+NODE_ENV=production\
+npm-run-all bundle publish
