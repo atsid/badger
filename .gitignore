@@ -2,6 +2,8 @@
 logs
 *.log
 *~
+.happypack
+.awspublish*
 
 .otto
 

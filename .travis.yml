@@ -1,19 +1,13 @@
 language: node_js
 node_js:
-  - "4.0"
-sudo: false
-before_script: npm shrinkwrap
-after_script: npm run report-coverage
+  - "node"
+  - "6"
 deploy:
-  provider: elasticbeanstalk
-  skip_cleanup: true
-  region: us-west-2
-  zip-file: dist/badger.zip
-  app: oss-demos
-  env: badger
-  bucket_name: ats-travis
-  bucket_path: badger
-  on:
-    repo: atsid/badger
-    branch: master
-    node: '4.0'
+  - provider: script
+    script: GITHUB_CLIENT_ID=$PROD_GH_CLIENT_ID NODE_ENV=production npm run publish
+    on: 
+      branch: release
+  - provider: script
+    script: GITHUB_CLIENT_ID=$INTEG_GH_CLIENT_ID NODE_ENV=production npm run publish
+    on: 
+      branch: master
