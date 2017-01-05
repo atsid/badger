@@ -4,10 +4,10 @@ node_js:
   - "6"
 deploy:
   - provider: script
-    script: GITHUB_CLIENT_ID=$PROD_GH_CLIENT_ID NODE_ENV=production npm run publish
+    script: scripts/deploy/release.sh
     on: 
       branch: release
   - provider: script
-    script: GITHUB_CLIENT_ID=$INTEG_GH_CLIENT_ID NODE_ENV=production npm run publish
+    script: scripts/deploy/master.sh
     on: 
       branch: master
