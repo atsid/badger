@@ -5,9 +5,11 @@ node_js:
 deploy:
   - provider: script
     script: scripts/deploy/release.sh
+    skip_cleanup: true
     on: 
       branch: release
   - provider: script
     script: scripts/deploy/master.sh
+    skip_cleanup: true
     on: 
       branch: master
