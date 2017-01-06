@@ -5,7 +5,7 @@ import Application from './components/Application';
 import store from './state';
 import { receiveToken } from './state/actions/auth';
 
-const GH_GATEKEEPER_URL = 'https://8rmgiduz8f.execute-api.us-west-2.amazonaws.com/prod/authenticate';
+const GH_GATEKEEPER_URL = `${process.env.GATEKEEPER_ROOT}/authenticate`;
 
 // Needed for onTouchTap
 // Check this repo:

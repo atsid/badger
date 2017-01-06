@@ -2,16 +2,19 @@ const webpack = require('webpack');
 const path = require('path');
 const packageJson = require('./package.json');
 
-const stage = process.env.NODE_ENV;
-const isInteg = stage === 'integration';
-const isProd = stage === 'production';
-const isProdLike = (isProd || isInteg);
+const nodeEnv = process.env.NODE_ENV;
+
+const gatekeeperApi = () => {
+  let apiStage = 'localhost';
+  if (process.env.API_STAGE) {
+    apiStage = process.env.API_STAGE;
+  }
+  return `https://8rmgiduz8f.execute-api.us-west-2.amazonaws.com/${apiStage}`;
+};
 
 // Determine packing variables
-const apiUrl = 'https://badger.atsid.net/api';
-const nodeEnv = isProdLike ? 'production' : stage || 'development';
 const { version } = packageJson;
-const devtool = isProdLike ? 'cheap-source-map' : 'eval-source-map';
+const devtool = nodeEnv === 'production' ? 'cheap-source-map' : 'eval-source-map';
 const githubClientId = process.env.GITHUB_CLIENT_ID;
 
 module.exports = {
@@ -19,7 +22,7 @@ module.exports = {
   context: path.join(__dirname, 'src'),
   entry: {
     javascript: './app.jsx',
-    html: './index.html'
+    html: './index.html',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -68,9 +71,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv),
-        API_URL: JSON.stringify(apiUrl),
         VERSION: JSON.stringify(version),
         GITHUB_CLIENT_ID: JSON.stringify(githubClientId),
+        GATEKEEPER_ROOT: JSON.stringify(gatekeeperApi()),
       },
     }),
     // new LodashModuleReplacementPlugin(),
