@@ -4,8 +4,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import Application from './components/Application';
 import store from './state';
 import { receiveToken } from './state/actions/auth';
+import './styles/main.scss';
 
-const GH_GATEKEEPER_URL = 'https://8rmgiduz8f.execute-api.us-west-2.amazonaws.com/prod/authenticate';
+const log = require('debug')('app:bootstrap');
+
+const GH_GATEKEEPER_URL = `${process.env.GATEKEEPER_ROOT}/authenticate`;
 
 // Needed for onTouchTap
 // Check this repo:
@@ -24,7 +27,10 @@ window.onload = function onload() {
     window.opener.postMessage(githubCode, window.location);
     window.close();
   } else {
-    ReactDOM.render(<Application authCode={githubCode} />, document.getElementById('badger'));
+    ReactDOM.render(
+      <Application authCode={githubCode} />,
+      document.getElementById('badger'),
+    );
   }
 };
 
@@ -53,6 +59,7 @@ function fetchUserToken(code) {
 
 window.addEventListener('message', (event) => {
   const code = event.data;
+  log('received message with github code', code);
   if (code && typeof code === 'string') {
     fetchUserToken(code).then((token) => {
       localStorage.access_token = token;

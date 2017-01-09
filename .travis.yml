@@ -8,7 +8,7 @@ deploy:
     script: scripts/deploy/release.sh
     skip_cleanup: true
     on: 
-      branch: release
+      branch: production
   - provider: script
     script: scripts/deploy/master.sh
     skip_cleanup: true
